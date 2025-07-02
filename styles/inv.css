@@ -1,0 +1,276 @@
+.inventory-section{
+  background-color:#181717;
+  & h2{
+    padding: 5px 0 7px;
+    text-align: center;
+    color: #eee;
+  }
+}
+
+.inventory{
+  height: 250px;
+  overflow-y:scroll;
+  overflow-x: hidden;
+  background-color: #141010;
+  box-shadow: inset hsla(0, 0%, 0%, 0.8) 0px 0px 20px;
+  background-image: url("../src/bgs/diagmonds.png");
+  padding: 15px;
+  display: flex;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  .inventory-item{
+    position: relative;
+    height: 86px;
+    width: 86px;
+    box-shadow: inset hsl(0, 0%, 100%, 0.4) 0px 0px 5px;
+    border: 1px solid rgb(65, 65, 65);
+    display: inline-block;
+    position: relative;
+    & img{
+      height: 100%;
+      width: auto;
+      position: relative;
+    }
+    .item-amount{
+      font-size: 14px;
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+    }
+    &:hover::before {
+      content: attr(data-name);
+      position: absolute;
+      bottom: -10px;
+      background-color: hsl(0, 0%, 13%, 0.6);
+      border: 2px solid black;
+      color: #eee;
+      padding: 6px 10px;
+      border-radius: 2px;
+
+      /* Ось ця частина — магія 👇 */
+      max-width: min(40vw, 200px);
+      width: max-content;
+      display: inline-block;
+      white-space: normal;
+      word-break: break-word;
+      text-align: left;
+
+      font-size: 14px;
+      z-index: 10;
+      opacity: 1;
+      pointer-events: none;
+    }
+  }
+
+
+    &::-webkit-scrollbar {
+      width: 16px;
+      height: 8px; }
+    &::-webkit-scrollbar-track {
+      background: #181818;}
+    &::-webkit-scrollbar-thumb {
+      background: #525252;
+      border-radius: 2px;}
+    &::-webkit-scrollbar-thumb:hover {
+      background: #423939;}
+}
+
+
+.power-to-destroy{
+  margin-bottom: 5px;
+  color: #e0e0e0;
+  & span{
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(209, 101, 101);
+    &.candestroy{
+      color: rgb(66, 196, 66);
+    }
+  }
+}
+
+.craft-section{
+  background: url(../src/bgs/dark-wood.png);
+  display: flex;
+  flex-direction: column;
+  #crafts-list{
+    overflow-x: scroll;
+    background-color: hsl(0, 11%, 7%, 0.5);
+    padding: 10px;
+    display: flex;
+    gap: 5px 10px;
+    .craft-item{
+      max-height: 64px;
+      background-color: hsl(0, 0%, 88%, 0.2);
+      border: #525252 2px solid;
+      & img{
+        cursor: url('../src/cursorOnore.png'), pointer;
+        width: 60px;
+      }
+
+      &:hover{
+        background-color: hsla(0, 0%, 54%, 0.2);
+      }
+    }
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px; }
+    &::-webkit-scrollbar-track {
+      background: #181818;}
+    &::-webkit-scrollbar-thumb {
+      background: #525252;
+      border-radius: 2px;}
+    &::-webkit-scrollbar-thumb:hover {
+      background: #423939;}
+  }
+  #craft-window{
+    margin: 10px;
+    box-shadow: inset hsl(0, 0%, 100%, 0.2) 0px 0px 15px;
+    background-color: #1d1a1a;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    transition: box-shadow 0.1s ease-in;
+    & h3{
+      font-size: 25px;
+      text-align: center;
+    }
+    #craft-recipe{
+      margin: 10px 0px;
+      width: 100%;
+      background-color: hsla(0, 0%, 60%, 0.2);
+      transition: box-shadow 0.2s ease-in;
+      
+      padding: 10px;
+      & p{
+        margin-bottom: 2px;
+        border: 1px solid black;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+
+        &:last-child{
+          margin-bottom: 0;
+        }
+
+        & img{
+          width: 38px;
+        }
+      }
+
+      &.Err{
+        box-shadow: inset 0 0 15px #ad0000;
+      }
+    }
+    #craft-button{
+      cursor: url('../src/cursorOnore.png'), pointer;
+      padding: 10px;
+      color: white;
+      background-color: #2b2b2b;
+      border: 2px solid #4d4d4d;
+      border-radius: 2px;
+      box-shadow: inset 0 0 5px #000000;
+
+      &:hover{
+        background-color: #414141;
+        border: 2px solid #2c2c2c;
+      }
+    }
+
+    &.Good{
+        box-shadow: inset 0 0 12px #4bff27;
+    }
+  }
+  .hidden{
+    display: none !important;
+  }
+}
+
+
+#pickaxeslist{
+  overflow-x: scroll;
+  background-color: hsl(0, 11%, 7%, 0.5);
+  padding: 10px;
+  display: flex;
+  gap: 5px 10px;
+
+
+  .pickaxe-item{
+    position: relative;
+    cursor: url('../src/cursorOnore.png'), pointer;
+    background-color: #141010;
+    border-radius: 5px;
+    padding: 6px;
+    display: flex;
+    font-size: 13px;
+    max-width: 250px;
+
+
+    &::after {
+      content: "\e80b"; 
+      font-family: 'fontello'; 
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 163, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      border-radius: 5px;
+      color: hsl(118, 100%, 32%, 1);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+    &:hover::after {
+      opacity: 1;
+    }
+
+
+    & img{
+      border-radius: 2px;
+      border: 1px solid #eeeeee;
+      margin-right: 4px;
+      align-self: flex-start;
+      width: 45px; height: 45px;
+    }
+
+    .desc{
+      font-size: 12px;
+      padding: 4px;
+      margin-bottom: 4px;
+      background-color: hsla(240, 100%, 83%, 0.2);
+      border: 1px solid rgb(143, 143, 255);
+      color: rgb(157, 157, 212);
+    }
+    .name{
+      font-size: 12px;
+      padding: 4px;
+      margin-bottom: 4px;
+      background-color: hsla(240, 100%, 96%, 0.2);
+      border: 1px solid rgb(217, 217, 255);
+      color: rgb(255, 255, 255);
+    }
+
+    & *{
+      cursor: inherit;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px; }
+  &::-webkit-scrollbar-track {
+    background: #181818;}
+  &::-webkit-scrollbar-thumb {
+    background: #525252;
+    border-radius: 2px;}
+  &::-webkit-scrollbar-thumb:hover {
+    background: #423939;}
+}

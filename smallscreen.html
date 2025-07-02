@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body{
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: rgb(255, 120, 120);
+      color: rgb(65, 0, 0);
+      display: flex;
+      justify-content: center;
+      & center{
+        max-width: 600px;
+      }
+      .info{
+        color: #000030;
+        padding: 10px;
+        border: 2px solid #3838ff;
+        border-radius: 3px;
+        background-color: hsl(240, 100%, 62%, 0.4);
+      }
+    }
+  </style>
+
+  <title>Err</title>
+</head>
+<body>
+  <center>
+  <h2>Увага! Мінімальна ширина екрану для користування цим сайтом становить <strong>635px</strong>  (Ваша <span id="usrWidth"></span>)</h2>
+  <h4>Не через те, що розробник лінивий (хоча, від частини так), а через те, що проект направлений в JS і час приділяється на розробку функціональності. Коли в розробника появиться час, він оптимізує сайт на телефони.</h4>
+  <div class="info">Якщо вам кортить побачити сайт з телефона, поверніть його в горизонтальне положення та перезайдіть на головну сторінку. Також можете спробувати ввімкнути режим "Версія для комп'ютера"</div>
+  <h3><a href="/index.html">Основна сторінка</a></h3>
+</center>
+<script>
+  const screenWidth = window.innerWidth;
+  document.getElementById("usrWidth").textContent = `${window.innerWidth}px`;
+</script>
+</body>
+</html>
