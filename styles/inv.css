@@ -48,7 +48,6 @@
       padding: 6px 10px;
       border-radius: 2px;
 
-      /* Ось ця частина — магія 👇 */
       max-width: min(40vw, 200px);
       width: max-content;
       display: inline-block;
@@ -205,11 +204,15 @@
     border-radius: 5px;
     padding: 6px;
     display: flex;
+    flex: 0 0 280px;
     font-size: 13px;
-    max-width: 250px;
+    max-height: 200px;
+    max-width: 280px;
 
 
     &::after {
+      border: 1px rgb(62, 150, 62) dashed;
+      box-sizing: border-box;
       content: "\e80b"; 
       font-family: 'fontello'; 
       position: absolute;
@@ -217,15 +220,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 163, 0, 0.2);
+      background-color: rgba(0, 163, 0, 0.1);
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items:start;
+      justify-content: start;
+      padding: 2px 7px;
       font-size: 48px;
       border-radius: 5px;
-      color: hsl(118, 100%, 32%, 1);
+      color: hsl(118, 100%, 32%, 0.4);
       opacity: 0;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.1s ease;
       pointer-events: none;
     }
     &:hover::after {

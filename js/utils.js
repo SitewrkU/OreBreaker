@@ -2,6 +2,7 @@ import { StoneClick } from "./main.js";
 const StoneImg = document.querySelector(".stone-img");
 let currentAnim;
 let animToggle = false;
+let keyPressed = false;
 
 
 const breakSounds = [
@@ -14,7 +15,7 @@ function playSound() {
   sound.play();
 }
 
-StoneImg.addEventListener("click", () => {
+function handleStoneInteraction() {
   playSound();
 
   const nextAnim = animToggle ? 'break2' : 'break';
@@ -26,8 +27,25 @@ StoneImg.addEventListener("click", () => {
   }
   StoneImg.classList.add(nextAnim);
   currentAnim = nextAnim;
+
   StoneClick();
-}); 
+}
+
+StoneImg.addEventListener("click", handleStoneInteraction);
+
+document.addEventListener("keydown", (event) => {
+  if ((event.code === "KeyZ" || event.code === "KeyX") && !keyPressed) {
+    keyPressed = true;
+    handleStoneInteraction();
+  }
+});
+document.addEventListener("keyup", (event) => {
+  if (event.code === "KeyZ" || event.code === "KeyX") {
+    keyPressed = false;
+  }
+});
+
+
 StoneImg.addEventListener("animationend", () => {
   if (currentAnim) {
     StoneImg.classList.remove(currentAnim);
@@ -51,6 +69,6 @@ document.getElementById('crafts-list').addEventListener('wheel', e => {
 window.addEventListener('load', function () {
     if (window.innerWidth < 635) {
       
-      window.location.href = "smallscreen.html";
+      window.location.href = "pages/smallscreen.html";
     }
 });

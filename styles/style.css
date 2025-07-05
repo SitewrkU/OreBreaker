@@ -15,11 +15,22 @@ body{
   font-family: "Cousine", monospace;
   color: #eeeeee;
 }
-
 main{
   display: flex;
   flex-direction: row;
   padding: 25px
+}
+
+.docslink{
+  text-decoration: none;
+  cursor: url('../src/cursorOnore.png'), pointer;
+  padding: 7px 7px 4px;
+  border-radius: 3px;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background-color: hsl(240, 100%, 80%, 0.2);
+  color: hsl(240, 25%, 75%);
 }
 
 .right-wrapper{
@@ -66,14 +77,15 @@ main{
 
   .skip-button{
     cursor: url('../src/cursorOnore.png'), pointer;
-    padding: 4px 8px;
+    padding: 6px 18px;
     color: white;
     background-color: #1b1b1b;
-    border: 1px solid #757575;
+    border: 1px solid #790000;
     box-shadow: inset 0px 0px 6px #772525;
 
     &.Skippable{
-      box-shadow: inset 0px 0px 10px #4cb449;
+      box-shadow: inset 0px 0px 10px #6ca06a;
+      border: 1px solid #589948;
     }
   }
 }

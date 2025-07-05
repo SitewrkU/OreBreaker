@@ -12,12 +12,16 @@ export const items = {
     name: "Кам'яне лезо кірки", src: "src/res/StonePickaxeBlade.png" },
   stoneHammer: { 
     name: "Кам'яний молот", src: "src/res/StoneHammer.png" },
+  fortifiedStonePickaxeHandle: { 
+    name: "Укріплена кам'яна ручка кірки", src: "src/res/FortifiedStonePickaxeHandle.png" },
   coal: { 
     name: "Вугілля", src:"src/res/Coal.png"},
   oldPickaxeBlade: { 
     name: "Старе лезо кірки", src:"src/res/OldPickaxeBlade.png" },
   ironPart: { 
     name: "Частина залізної руди", src:"src/res/IronPart.png" },
+  nickelPart: { 
+    name: "Частина нікельної руди", src:"src/res/NickelPart.png" },
   goldPart: { 
     name: "Частина золотої руди", src:"src/res/GoldPart.png" },
   goldShard: { 
@@ -40,20 +44,33 @@ export const items = {
     name: "Кам'яна кірка", src:"src/res/StonePickaxe.png",
     pickaxe: {
       desc: "Після руки — це як мерс після велосипеда. Не ідеал, але вже не соромно.",
-      value: 8.7,
+      value: 1,
       maxdurability: 60,
       durability: 60,
       power: 2
     }
   },
+  oldPickaxe: { 
+    name: "Стара кірка", src:"src/res/OldPickaxe.png",
+    pickaxe: {
+      desc: "Колись ця кірка слугувала досвідченому шахтарю. Тепер вона — лише бліда тінь своїх кращих часів.",
+      value: 1.7,
+      maxdurability: 95,
+      durability: 95,
+      power: 2
+    }
+  },
 };
+
+
+
 
 export const Mines = [
   {name: 'Стандартна шахта', bgColor:'#1f1716',
     ores: [
       {
         name: 'Камень',
-        chance: 53,
+        chance: 40,
         health: 20,
         powerToDestr: 1,
         rarity: 'Default',
@@ -62,7 +79,7 @@ export const Mines = [
           {
             ...items.stonePart,
             chance: [
-              {minCount: 2, maxCount: 4, dropChance: 100}
+              {minCount: 2, maxCount: 6, dropChance: 100}
             ]
           },
           {
@@ -75,7 +92,7 @@ export const Mines = [
       },
       {
         name: 'Вугільна руда',
-        chance: 25,
+        chance: 20,
         health: 35,
         powerToDestr: 1,
         rarity: 'Default',
@@ -90,17 +107,17 @@ export const Mines = [
           {
             ...items.stonePart,
             chance: [
-              {minCount: 1, maxCount: 2, dropChance: 60}
+              {minCount: 1, maxCount: 2, dropChance: 70}
             ]
           },
         ]
       },
       {
         name: 'Залізна руда',
-        chance: 15,
+        chance: 20,
         health: 50,
         rarity: 'Default',
-        powerToDestr: 1,
+        powerToDestr: 2,
         src: 'src/ores/Iron.png',
         drop: [
           {
@@ -118,8 +135,30 @@ export const Mines = [
         ]
       },
       {
+        name: 'Олов\'яна руда',
+        chance: 10,
+        health: 45,
+        rarity: 'Default',
+        powerToDestr: 2,
+        src: 'src/ores/NickelOre.png',
+        drop: [
+          {
+            ...items.nickelPart,
+            chance: [
+              {minCount: 1, maxCount: 3, dropChance: 100}
+            ],
+          },
+          {
+            ...items.stonePart,
+            chance: [
+              {minCount: 1, maxCount: 3, dropChance: 70}
+            ]
+          },
+        ]
+      },
+      {
         name: 'Золота руда',
-        chance: 5,
+        chance: 8,
         health: 100,
         powerToDestr: 3,
         rarity: 'Rare',
@@ -140,7 +179,7 @@ export const Mines = [
           {
             ...items.stonePart,
             chance: [
-              {minCount: 1, maxCount: 2, dropChance: 70}
+              {minCount: 1, maxCount: 2, dropChance: 60}
             ]
           },
         ]
@@ -174,6 +213,8 @@ export const Mines = [
 ];
 
 
+
+
 export const Crafts = [
   {
     id: "stoneBrick",
@@ -196,6 +237,18 @@ export const Crafts = [
     ...items.stonePickaxeHandle,
     ingredients: [
       { ...items.stoneBrick, amount: 3, remove: true },
+      { ...items.ironPart, amount: 3, remove: true },
+      { ...items.stoneHammer, amount: 1, remove: false },
+    ]
+  },
+  {
+    id: "fortifiedStonePickaxeHandle",
+    ...items.fortifiedStonePickaxeHandle,
+    ingredients: [
+      { ...items.nickelPart, amount: 8, remove: true },
+      { ...items.stonePickaxeHandle, amount: 1, remove: true },
+      { ...items.stoneBrick, amount: 2, remove: true },
+      { ...items.stoneHammer, amount: 1, remove: false },
     ]
   },
   {
@@ -211,8 +264,18 @@ export const Crafts = [
     id: "stonePickaxe",
     ...items.stonePickaxe,
     ingredients: [
-      { ...items.stonePickaxeHandle, amount: 1, remove: true },
       { ...items.stonePickaxeBlade, amount: 1, remove: true },
+      { ...items.stonePickaxeHandle, amount: 1, remove: true },
+      { ...items.stoneHammer, amount: 1, remove: false },
+    ]
+  },
+  {
+    id: "oldPickaxe",
+    ...items.oldPickaxe,
+    ingredients: [
+      { ...items.stonePart, amount: 3, remove: true },
+      { ...items.fortifiedStonePickaxeHandle, amount: 1, remove: true },
+      { ...items.oldPickaxeBlade, amount: 1, remove: true },
       { ...items.stoneHammer, amount: 1, remove: false },
     ]
   },

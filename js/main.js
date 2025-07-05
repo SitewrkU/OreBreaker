@@ -18,7 +18,7 @@ let canSkipOre = false;
 
 let CurrentOre = null; //Використовується для інших функцій яким потрібно знати точну руду. Наприклад генерація дропу
 let CurrentRecipe = null; 
-let CurrentPickaxe = JSON.parse(JSON.stringify(data.items.stonePickaxe));
+let CurrentPickaxe = structuredClone(data.items.stonePickaxe);
 let clicks = 0;
 
 
@@ -81,15 +81,11 @@ export function StoneClick(gendrop = true){
 function GenerateOre(){
   GenerateOreRNG(true);
 
-  console.log('До лому:', JSON.stringify(data.items.stonePickaxe));
-  console.log('Поточна кірка:', JSON.stringify(CurrentPickaxe));
   CurrentPickaxe.pickaxe.durability--;
   if(CurrentPickaxe.pickaxe.durability <= 0){
     CurrentPickaxe = null;
     RenderCurrPickaxe();
   }
-  console.log('!!!Після лому:', JSON.stringify(data.items.stonePickaxe));
-  console.log('Поточна кірка:', JSON.stringify(CurrentPickaxe));
 
   canSkipOre = true;
   SkipButton.classList.add('Skippable');
@@ -172,7 +168,7 @@ function RenderDropList() {
   dropList.innerHTML = "";
 
   if(lastDropList[0].name === "nodrop"){
-    dropList.innerHTML += `<p>\\(o_o)/ —[Я не знайшов!]</p>`
+    dropList.innerHTML += `<p>\\(o_o)/ [Нічого не знайдено]</p>`
     return;
   }
 
