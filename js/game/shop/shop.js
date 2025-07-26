@@ -3,8 +3,8 @@ import * as shopData from './shopdata.js'
 import { inventory, pickaxes } from '../../data.js';
 import { updateInventory, updatePickaxesList } from '../../render.js';
 
-const sellSound = new Audio('../../src/sounds/shop/shop-sell.mp3');
-const buySound = new Audio('../../src/sounds/shop/shop-buy.mp3');
+const sellSound = new Audio('src/sounds/shop/shop-sell.mp3');
+const buySound = new Audio('src/sounds/shop/shop-buy.mp3');
 let Coins = 0;
 
 //Рендер предметів для продажу

@@ -18,7 +18,7 @@ const ShowPowerSpan = document.getElementById("powerToDestroySpan");
 const SkipButton = document.querySelector(".skip-button");
 const pickaxeContainer = document.getElementById("pickaxelabel");
 
-const breakSound = new Audio('../src/sounds/pickaxe-break.mp3');
+const breakSound = new Audio('src/sounds/pickaxe-break.mp3');
 breakSound.load(); 
 
 let canSkipOre = false;
