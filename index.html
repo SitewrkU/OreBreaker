@@ -4,20 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" href="data:,">
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="./styles/inv.css">
+  <link rel="stylesheet" href="./styles/shop.css">
   <link rel="stylesheet" href="./styles/fontello.css">
-  <title>Stone</title>
+  <title>OreBreaker</title>
 </head>
 <body>
   <a class="docslink" href="./pages/docs/docs.html">docs</a>
-  <main>
 
+  <main>
     <div class="ore-section">
       <h1 class="ore-name">Камень</h1>
       <div class="ore-container">
@@ -48,11 +49,9 @@
       <div id="pickaxelabel"></div>
     </div>
     </div>
-
   </main>
 
-  <div id="pickaxeslist">
-    
+  <div id="pickaxeslist" class="xScroller">
   </div>
 
   <div class="inventory-section">
@@ -60,16 +59,40 @@
     <div class="inventory"></div>
   </div>
 
+
   <div class="craft-section">
-    <div id="crafts-list"></div>
+    <div id="crafts-list">
+    </div>
     <div id="craft-window" class="hidden">
       <h3 id="craft-title">Крафт</h3>
       <div id="craft-recipe"></div>
       <button id="craft-button"><i class="icon-hammer"></i> Скрафтити</button>
     </div>
+    <div id="craft-pickaxe-window" class="hidden">
+    </div>
   </div>
 
+
+  <div class="shop">
+    <h2>Ринок</h2>
+    <div class="sell-section">
+      <div class="money-section">
+        <img src="./src/Coin.png" alt="Coin">
+        <p id="coins"><span id="coinsSpan">0</span>$</p>
+      </div>
+
+      <div id="selllist" class="xScroller defscrollbar">
+      </div>
+    </div>
+
+    <div class="buy-section">
+      <div id="buylist" class="xScroller defscrollbar">
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils/smallscreen.js"></script>
   <script src="js/main.js" type="module"></script>
-  <script src="js/utils.js" type="module"></script>
+  <script src="js/utils/utils.js" type="module"></script>
 </body>
 </html>

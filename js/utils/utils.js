@@ -1,5 +1,6 @@
-import { StoneClick } from "./main.js";
+import { StoneClick } from "../main.js";
 const StoneImg = document.querySelector(".stone-img");
+StoneImg.addEventListener("click", handleStoneInteraction);
 let currentAnim;
 let animToggle = false;
 let keyPressed = false;
@@ -31,21 +32,6 @@ function handleStoneInteraction() {
   StoneClick();
 }
 
-StoneImg.addEventListener("click", handleStoneInteraction);
-
-document.addEventListener("keydown", (event) => {
-  if ((event.code === "KeyZ" || event.code === "KeyX") && !keyPressed) {
-    keyPressed = true;
-    handleStoneInteraction();
-  }
-});
-document.addEventListener("keyup", (event) => {
-  if (event.code === "KeyZ" || event.code === "KeyX") {
-    keyPressed = false;
-  }
-});
-
-
 StoneImg.addEventListener("animationend", () => {
   if (currentAnim) {
     StoneImg.classList.remove(currentAnim);
@@ -56,19 +42,37 @@ StoneImg.addEventListener("animationend", () => {
 
 
 
+const keys = {};
+const used = {};
+
+["KeyZ", "KeyX"].forEach(code => {
+  keys[code] = false;
+  used[code] = false;
+});
+
+document.addEventListener("keydown", (e) => {
+  if ((e.code === "KeyZ" || e.code === "KeyX") && !used[e.code]) {
+    keys[e.code] = true;
+    used[e.code] = true;
+    handleStoneInteraction();
+  }
+});
+
+document.addEventListener("keyup", (e) => {
+  if (e.code === "KeyZ" || e.code === "KeyX") {
+    keys[e.code] = false;
+    used[e.code] = false;
+  }
+});
+
+
 
 //scroller
-document.getElementById('crafts-list').addEventListener('wheel', e => {
-  if (e.deltaY) {
-    e.preventDefault();
-    e.currentTarget.scrollLeft += e.deltaY;
-  }
-}, { passive: false });
-
-
-window.addEventListener('load', function () {
-    if (window.innerWidth < 635) {
-      
-      window.location.href = "pages/smallscreen.html";
+document.querySelectorAll('.xScroller').forEach(el => {
+  el.addEventListener('wheel', e => {
+    if (e.deltaY) {
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
     }
+  }, { passive: false });
 });

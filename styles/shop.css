@@ -1,0 +1,158 @@
+.shop{
+  padding-bottom: 10px;
+  background-image: url("../src/bgs/dark-wood.png");
+  background-color: #0e0e0e;
+
+  & h2{
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .sell-section{
+    margin-left: 10px;
+    display: flex;
+
+    .money-section{
+      border: 2px solid black;
+      box-shadow: inset 0px 0px 20px rgb(31, 23, 0);
+      text-align: center;
+      word-break: break-word;
+      font-size: 1.1em;
+      color: rgb(255, 218, 150);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 110px;
+      padding-bottom: 15px;
+      background-image: url("../src/bgs/diagmonds.png");
+      background-color: rgb(255, 255, 117);
+
+      #coins{
+        background-color: hsl(0, 0%, 0%, 0.3);
+        border-radius: 5px;
+        border: 2px solid rgb(61, 40, 0);
+        padding: 0px 4px;
+      }
+      
+      & img{
+        width: 60px;
+        filter: drop-shadow(0 0 10px rgba(8, 8, 0));
+      }
+    }
+
+
+    #selllist{
+      width: 100%; 
+      overflow-x: auto;
+      padding-bottom: 5px;
+      margin-left: 20px;
+      display: flex;
+      gap: 10px;
+
+      .sell-item{
+        display: flex;
+        background-color: #202020;
+        height: 100px;
+
+        .sell-item-info{
+          padding: 0px 5px;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+
+          & img{
+            width: 64px;
+          }
+        }
+
+        & button{
+          background-color: transparent;
+          font-size: 1em;
+          border: 2px solid #5c5151;
+          color: #5c4040;
+          padding: 10px;
+
+          transition: all 0.1s ease-in-out;
+          &:hover{
+            background-color: hsla(0, 66%, 28%, 0.2);
+          }
+
+          &.cansell{
+            cursor: url('../src/cursorOnore.png'), pointer;
+            border: 2px solid #4ad84a;
+            color: #4ad84a;
+            &:hover{
+              background-color: hsl(120, 65%, 57%, 0.2);
+            }
+            & i{
+              cursor: url('../src/cursorOnore.png'), pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .buy-section{
+    margin: 10px 0 0 10px;
+    #buylist{
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+
+      .buy-item{
+        min-width: 160px;
+        max-width: 160px;
+        padding: 5px;
+        border: 1px solid #8a8a8a;
+        background-color: #131313;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & p:first-of-type{
+          text-align: center;
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 0.9em;
+          margin-top: 5px;
+        }
+
+        & img{
+          width: 70px;
+        }
+
+        & button{
+          margin-top: 5px;
+          padding: 5px 0;
+          width: 100%;
+          color: #68f056;
+          background: none;
+          border: 2px solid #68f056; 
+
+          &:hover{
+            background-color: hsl(113, 84%, 64%, 0.2);
+            cursor: url('../src/cursorOnore.png'), pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.defscrollbar{
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px; }
+  &::-webkit-scrollbar-track {
+    background: #181818;}
+  &::-webkit-scrollbar-thumb {
+    background: #525252;
+    border-radius: 2px;}
+  &::-webkit-scrollbar-thumb:hover {
+    background: #423939;}
+}

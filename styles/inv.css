@@ -91,19 +91,24 @@
 }
 
 .craft-section{
-  background: url(../src/bgs/dark-wood.png);
   display: flex;
-  flex-direction: column;
+  background: url(../src/bgs/dark-wood.png);
+  background-color: #000000;
   #crafts-list{
-    overflow-x: scroll;
+    max-height: 350px;
+    height: 100%;
+    max-width: 165px;
+    overflow-y: scroll;
     background-color: hsl(0, 11%, 7%, 0.5);
     padding: 10px;
     display: flex;
-    gap: 5px 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px 5px;
     .craft-item{
       max-height: 64px;
       background-color: hsl(0, 0%, 88%, 0.2);
-      border: #525252 2px solid;
+      border: #a5a5a5 2px solid;
       & img{
         cursor: url('../src/cursorOnore.png'), pointer;
         width: 60px;
@@ -124,24 +129,30 @@
     &::-webkit-scrollbar-thumb:hover {
       background: #423939;}
   }
+
+
   #craft-window{
     margin: 10px;
     box-shadow: inset hsl(0, 0%, 100%, 0.2) 0px 0px 15px;
     background-color: #1d1a1a;
-    max-width: 500px;
+    max-width: 450px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     padding: 15px;
     transition: box-shadow 0.1s ease-in;
     & h3{
-      font-size: 25px;
+      font-size: 20px;
       text-align: center;
     }
     #craft-recipe{
+      max-height: 200px;
+      overflow-y: scroll;
       margin: 10px 0px;
       width: 100%;
+      border: 2px solid #00000000;
       background-color: hsla(0, 0%, 60%, 0.2);
-      transition: box-shadow 0.2s ease-in;
+      transition: border 0.1s ease-in;
       
       padding: 10px;
       & p{
@@ -158,13 +169,29 @@
         & img{
           width: 38px;
         }
+
+        & i{
+          margin-right: 7px;
+        }
       }
 
       &.Err{
-        box-shadow: inset 0 0 15px #ad0000;
+        border-color: #ad0000;
       }
+
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px; }
+      &::-webkit-scrollbar-track {
+        background: #181818;}
+      &::-webkit-scrollbar-thumb {
+        background: #525252;
+        border-radius: 2px;}
+      &::-webkit-scrollbar-thumb:hover {
+        background: #423939;}
     }
     #craft-button{
+      margin-top: auto;
       cursor: url('../src/cursorOnore.png'), pointer;
       padding: 10px;
       color: white;
@@ -183,6 +210,33 @@
         box-shadow: inset 0 0 12px #4bff27;
     }
   }
+
+  #craft-pickaxe-window{
+    position: relative;
+    border: 2px solid black;
+    background-color:hsl(0, 0%, 100%, 0.1);
+    height: fit-content;
+    width: 120px;
+    padding: 6px;
+    margin: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & *{
+      z-index: 2;
+    }
+
+    &::after{
+      content: "i";
+      font-size: 24px;
+      color: #414141;
+      position: absolute;
+      top: 5px;
+      left: 5px;
+    }
+  }
+
   .hidden{
     display: none !important;
   }
@@ -246,12 +300,22 @@
     }
 
     .desc{
+      max-height: 50px;
+      overflow-y: scroll;
       font-size: 12px;
       padding: 4px;
       margin-bottom: 4px;
       background-color: hsla(240, 100%, 83%, 0.2);
       border: 1px solid rgb(143, 143, 255);
       color: rgb(157, 157, 212);
+
+      &::-webkit-scrollbar {width: 12px;}
+      &::-webkit-scrollbar-track {background: hsla(0, 0%, 100%, 0.2);}
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.3); 
+        border-radius: 2px;
+        transition: background-color 0.3s;
+      }
     }
     .name{
       font-size: 12px;
