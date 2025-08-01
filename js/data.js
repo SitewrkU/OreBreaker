@@ -284,15 +284,6 @@ export const Crafts = [
     ]
   },
   {
-    id: "fortifiedStoneBrick",
-    ...items.fortifiedStoneBrick,
-    ingredients: [
-      { ...items.stoneBrick, amount: 3, remove: true },
-      { ...items.ironPart, amount: 5, remove: true },
-      { ...items.stoneHammer, amount: 1, remove: false },
-    ]
-  },
-  {
     id: "stoneHammer",
     ...items.stoneHammer,
     ingredients: [
@@ -467,15 +458,6 @@ export const Crafts = [
     ]
   },
   {
-    id: "ironPickaxeGTip",
-    ...items.ironPickaxeGTip,
-    ingredients: [
-      { ...items.goldenPickaxeTip, amount: 1, remove: true },
-      { ...items.ironPickaxe, amount: 1, remove: true },
-      { ...items.ironIngot, amount: 2, remove: true },
-    ]
-  },
-  {
     id: "nickelPickaxeTip",
     ...items.nickelPickaxeTip,
     ingredients: [
@@ -484,13 +466,45 @@ export const Crafts = [
       { ...items.accurateTool, amount: 1, remove: false },
     ]
   },
+];
+
+
+export const altCraftsArr = [
   {
-    id: "ironPickaxeNTip",
-    ...items.ironPickaxeNTip,
-    ingredients: [
-      { ...items.nickelPickaxeTip, amount: 1, remove: true },
-      { ...items.ironPickaxe, amount: 1, remove: true },
-      { ...items.ironIngot, amount: 2, remove: true },
+    parentId: "ironPickaxe",
+    altcrafts: [
+    {
+      id: "ironPickaxeGTip",
+      ...items.ironPickaxeGTip,
+      ingredients: [
+        { ...items.goldenPickaxeTip, amount: 1, remove: true },
+        { ...items.ironPickaxe, amount: 1, remove: true },
+        { ...items.ironIngot, amount: 2, remove: true },
+      ]
+    },
+    {
+      id: "ironPickaxeNTip",
+      ...items.ironPickaxeNTip,
+      ingredients: [
+        { ...items.nickelPickaxeTip, amount: 1, remove: true },
+        { ...items.ironPickaxe, amount: 1, remove: true },
+        { ...items.ironIngot, amount: 2, remove: true },
+      ]
+    },
     ]
   },
-];
+  {
+    parentId: "stoneBrick",
+    altcrafts: [
+    {
+      id: "fortifiedStoneBrick",
+      ...items.fortifiedStoneBrick,
+      ingredients: [
+        { ...items.stoneBrick, amount: 3, remove: true },
+        { ...items.ironPart, amount: 5, remove: true },
+        { ...items.stoneHammer, amount: 1, remove: false },
+      ]
+    },
+    ]
+  },
+]

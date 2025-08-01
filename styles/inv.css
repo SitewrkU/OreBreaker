@@ -106,12 +106,24 @@
     flex-wrap: wrap;
     gap: 5px 5px;
     .craft-item{
+      position: relative;
       max-height: 64px;
       background-color: hsl(0, 0%, 88%, 0.2);
       border: #a5a5a5 2px solid;
       & img{
         cursor: url('../src/cursorOnore.png'), pointer;
         width: 60px;
+      }
+
+      .altcrafts-count{
+        color: #25b625;
+        background-color: hsla(0, 0%, 0%, 0.1);
+        border: 1px solid #25b625;
+        font-size: 0.8em;
+        padding: 2px 3px 0;
+        position: absolute;
+        bottom: 2px;
+        left: 4px;
       }
 
       &:hover{
@@ -123,6 +135,42 @@
       height: 8px; }
     &::-webkit-scrollbar-track {
       background: #181818;}
+    &::-webkit-scrollbar-thumb {
+      background: #525252;
+      border-radius: 2px;}
+    &::-webkit-scrollbar-thumb:hover {
+      background: #423939;}
+  }
+
+
+  #altcrafts-list{
+    flex-direction: column;
+    max-height: 350px;
+    height: 100%;
+    overflow-y: scroll;
+    background-color: hsl(0, 11%, 7%, 0.5);
+    padding: 10px;
+    display: none;
+    gap: 5px 5px;
+    .altcraft-item{
+      position: relative;
+      max-height: 44px;
+      background-color: hsl(0, 0%, 88%, 0.1);
+      border: #444444 2px solid;
+      & img{
+        cursor: url('../src/cursorOnore.png'), pointer;
+        width: 40px;
+      }
+
+      &:hover{
+        background-color: hsla(0, 0%, 54%, 0.3);
+      }
+    }
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px; }
+    &::-webkit-scrollbar-track {
+      background: #979797;}
     &::-webkit-scrollbar-thumb {
       background: #525252;
       border-radius: 2px;}

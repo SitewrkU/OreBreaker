@@ -7,15 +7,22 @@ import {
 } from '../render.js';
 import { state } from '../main.js';
 
-export function UseCraft(card){
+export function UseCraft(card, isAlt = false){
   const craftWindow = dom.craftWindow;
   const craftRecipe = dom.craftRecipe;
   const craftTitle = document.getElementById("craft-title");
   const craftBtn = document.getElementById('craft-button');
-  const itemKey = card.dataset.item;
-  const recipe = data.Crafts.find(craft => craft.id === itemKey);
-  state.CurrentRecipe = recipe;
 
+  const itemKey = card.dataset.item;
+  const recipe = isAlt
+    ? findInAltCrafts(itemKey)
+    : data.Crafts.find(craft => craft.id === itemKey);
+  if (!recipe) {
+    console.warn("Рецепт не знайдено:", itemKey);
+    return;
+  }
+
+  state.CurrentRecipe = recipe;
   craftTitle.textContent = recipe.name;
   craftRecipe.innerHTML = '';
 
@@ -34,10 +41,22 @@ export function UseCraft(card){
     p.appendChild(img);
   });
 
+  //Інформація про кірки
   if(recipe.pickaxe){
-    RenderPickaxeInfo(recipe.name, recipe.pickaxe);
+    RenderPickaxeInfo(recipe.pickaxe);
   }else{
     dom.craftPickaxeWindow.style.display = "none";
+  }
+
+  //Додаткові крафти до основного
+  if(!isAlt){
+    const findAltCrafts = data.altCraftsArr.find(alt => alt.parentId === state.CurrentRecipe.id);
+    if(findAltCrafts){ 
+      console.log(`Додаткові крафти до ${state.CurrentRecipe.name}:`, findAltCrafts.altcrafts);
+      RenderALTCrafts(findAltCrafts.altcrafts);
+    }else{
+      dom.altCraftList.style.display = "none";
+    }
   }
 
   craftWindow.classList.remove("hidden");
@@ -46,7 +65,42 @@ export function UseCraft(card){
 }
 
 
-function RenderPickaxeInfo(itemName, pickaxeInfo){
+
+
+//UTILS -------------------------------------------------------
+export function RenderALTCrafts(altcrafts) {
+  const container = dom.altCraftList;
+  container.style.display = 'flex';
+  container.innerHTML = ''; 
+
+  altcrafts.forEach(item => {
+    const CraftEl = document.createElement('div');
+    CraftEl.classList.add('altcraft-item');
+    CraftEl.dataset.item = item.id;
+    container.appendChild(CraftEl);
+
+    CraftEl.innerHTML = `   
+      <img src="${item.src}">
+    `;
+  });
+
+  const altcraftItems = container.querySelectorAll(".altcraft-item");
+  altcraftItems.forEach(card => {
+    card.addEventListener("click", () => UseCraft(card, true));
+  });
+}
+
+
+function findInAltCrafts(itemId) {
+  for (const group of data.altCraftsArr) {
+    const found = group.altcrafts.find(alt => alt.id === itemId);
+    if (found) return found;
+  }
+  return null;
+}
+
+
+function RenderPickaxeInfo(pickaxeInfo){
   const Container = dom.craftPickaxeWindow;
   Container.classList.remove("hidden");
   Container.style.display = "flex";
@@ -65,7 +119,7 @@ export function UpdateCraftListColors(recipe) {
 
   ingredientElements.forEach((p, index) => {
     const ing = recipe.ingredients[index];
-    if (!ing) return; // безпечний гвард
+    if (!ing) return; // фрі гвард
 
     const invAmount = inventory.find(item => item.name === ing.name)?.amount || 0;
 
@@ -81,7 +135,6 @@ export function UpdateCraftListColors(recipe) {
     } else {
       pickaxeAmount = pickaxes.filter(pick => pick.name === ing.name).length;
     }
-
     const totalAmount = invAmount + pickaxeAmount;
 
     if(totalAmount >= ing.amount){

@@ -31,7 +31,7 @@ export function updateInventory() {
 //РЕНДЕР МИНУЛОГО ДРОПУ
 export function RenderDropList(lastDropList) {
   const dropList = dom.dropList;
-  dropList.innerHTML = "";
+  dropList.innerHTML = '';
 
   if(lastDropList[0].name === "nodrop"){
     dropList.innerHTML += `<p>\\(o_o)/ [Нічого не знайдено]</p>`
@@ -51,7 +51,7 @@ export function RenderDropList(lastDropList) {
 
 //Рендер Крафтів 
 export function RenderCrafts() {
-  const container = document.getElementById('crafts-list');
+  const container = dom.craftList;
   container.innerHTML = ''; 
 
   data.Crafts.forEach(item => {
@@ -63,6 +63,11 @@ export function RenderCrafts() {
     CraftEl.innerHTML = `   
       <img src="${item.src}">
     `;
+
+    const findAltCrafts = data.altCraftsArr.find(alt => alt.parentId === item.id);
+    if(findAltCrafts){
+      CraftEl.innerHTML += `<p class="altcrafts-count">+${findAltCrafts.altcrafts.length}</p>`
+    }
   });
 
   const craftItems = container.querySelectorAll(".craft-item");

@@ -11,6 +11,8 @@ export const dom = {
   dropList: document.querySelector(".drop-list"),
 
   craftWindow: document.getElementById("craft-window"),
+  craftList: document.getElementById('crafts-list'),
+  altCraftList: document.getElementById('altcrafts-list'),
   craftTitle: document.getElementById("craft-title"),
   craftRecipe: document.getElementById("craft-recipe"),
   craftPickaxeWindow: document.getElementById("craft-pickaxe-window"),
