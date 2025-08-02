@@ -151,7 +151,7 @@ export const Mines = [
       {
         name: 'Вугільна руда',
         chance: 20,
-        health: 35,
+        health: 30,
         powerToDestr: 1,
         rarity: 'Default',
         src: 'src/ores/CoalOre.png',
@@ -173,7 +173,7 @@ export const Mines = [
       {
         name: 'Залізна руда',
         chance: 20,
-        health: 50,
+        health: 40,
         rarity: 'Default',
         powerToDestr: 2,
         src: 'src/ores/Iron.png',
@@ -195,7 +195,7 @@ export const Mines = [
       {
         name: 'Нікельна руда',
         chance: 10,
-        health: 45,
+        health: 35,
         rarity: 'Default',
         powerToDestr: 2,
         src: 'src/ores/NickelOre.png',
@@ -217,7 +217,7 @@ export const Mines = [
       {
         name: 'Золота руда',
         chance: 8,
-        health: 100,
+        health: 80,
         powerToDestr: 3,
         rarity: 'Rare',
         src: 'src/ores/GoldOre.png',

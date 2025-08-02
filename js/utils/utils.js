@@ -1,11 +1,11 @@
 import { StoneClick } from "../main.js";
 const StoneImg = document.querySelector(".stone-img");
 StoneImg.addEventListener("click", handleStoneInteraction);
+const fsbtn = document.getElementById('fullscreen-btn');
 let currentAnim;
 let animToggle = false;
-let keyPressed = false;
 
-
+//Звуки ---
 const breakSounds = [
   new Audio('src/sounds/stone-kick.mp3'),
   new Audio('src/sounds/stone-kick2.mp3'),
@@ -16,6 +16,7 @@ function playSound() {
   sound.play();
 }
 
+//Натиск на руду --
 function handleStoneInteraction() {
   playSound();
 
@@ -40,8 +41,7 @@ StoneImg.addEventListener("animationend", () => {
 });
 
 
-
-
+//Хоткеї для руди на Z та X
 const keys = {};
 const used = {};
 
@@ -67,7 +67,7 @@ document.addEventListener("keyup", (e) => {
 
 
 
-//scroller
+//scroller --
 document.querySelectorAll('.xScroller').forEach(el => {
   el.addEventListener('wheel', e => {
     if (e.deltaY) {
@@ -75,4 +75,17 @@ document.querySelectorAll('.xScroller').forEach(el => {
       el.scrollLeft += e.deltaY;
     }
   }, { passive: false });
+});
+
+
+
+//Фулскрін режим --
+fsbtn.addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch((err) => {
+      alert(`Помилка при вході в повноекранний режим: ${err.message}`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
 });
